@@ -10,4 +10,6 @@ public interface EmployeeService {
     public EmployeeDTO getEmployee(int id);
 
     public Employee saveEmployee(Employee employee);
+
+    Employee updateEmployee(Employee employee);
 }
