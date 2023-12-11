@@ -61,4 +61,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employeeRepository.deleteById(id);
     }
+
+    @Override
+    public List<EmployeeDTO> findByName(String name) {
+
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        List<Employee> employeeList = employeeRepository.findByFirstName(name);
+
+        employeeList.forEach(employee -> {
+            employeeDTOList.add(mapper.entityToDto(employee));
+        });
+        return employeeDTOList;
+    }
 }

@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.entity.Department;
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -46,5 +45,11 @@ public class EmployeeController {
             throw new RuntimeException(e);
         }
         return "Employee deleted with ID = "+id;
+    }
+
+
+    @GetMapping("/find-by-first-name/{name}")
+    public List<EmployeeDTO> findByName(@PathVariable("name") String name){
+        return employeeService.findByName(name);
     }
 }
