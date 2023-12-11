@@ -63,10 +63,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<EmployeeDTO> findByName(String name) {
+    public List<EmployeeDTO> findByFirstName(String name) {
 
         List<EmployeeDTO> employeeDTOList = new ArrayList<>();
-        List<Employee> employeeList = employeeRepository.findByFirstName(name);
+        List<Employee> employeeList = employeeRepository.findByFirstNameContain(name);
 
         employeeList.forEach(employee -> {
             employeeDTOList.add(mapper.entityToDto(employee));

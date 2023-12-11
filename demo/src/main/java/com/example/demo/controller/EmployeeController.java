@@ -49,7 +49,7 @@ public class EmployeeController {
 
 
     @GetMapping("/find-by-first-name/{name}")
-    public List<EmployeeDTO> findByName(@PathVariable("name") String name){
-        return employeeService.findByName(name);
+    public List<EmployeeDTO> findByFirstName(@PathVariable("name") String name){
+        return employeeService.findByFirstName(name);
     }
 }

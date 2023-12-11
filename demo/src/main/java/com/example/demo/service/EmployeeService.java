@@ -15,5 +15,5 @@ public interface EmployeeService {
 
     void deleteEmployee(int id);
 
-    List<EmployeeDTO> findByName(String name);
+    List<EmployeeDTO> findByFirstName(String name);
 }
