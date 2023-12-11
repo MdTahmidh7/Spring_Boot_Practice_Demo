@@ -36,4 +36,15 @@ public class EmployeeController {
     public Employee updateEmployee(@RequestBody Employee employee){
         return employeeService.updateEmployee(employee);
     }
+
+
+    @DeleteMapping("/delete-employee/{id}")
+    public String deleteEmployee(@PathVariable("id") int id){
+        try {
+            employeeService.deleteEmployee(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return "Employee deleted with ID = "+id;
+    }
 }

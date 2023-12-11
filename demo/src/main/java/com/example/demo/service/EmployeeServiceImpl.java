@@ -52,4 +52,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return employeeRepository.save(employee);
     }
+
+    @Override
+    public void deleteEmployee(int id) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        if (employeeOptional.isEmpty()) {
+            throw new RuntimeException("Employee not found by id = " + id);
+        }
+        employeeRepository.deleteById(id);
+    }
 }
