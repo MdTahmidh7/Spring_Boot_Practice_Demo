@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class DepartmentController {
 
     private final Logger  logger= LoggerFactory.getLogger(DepartmentController.class);
+
+    @Value("${app.name}")
+    private String appName;
 
     @Autowired
     private DepartmentService departmentService;
@@ -47,6 +51,11 @@ public class DepartmentController {
     ){
         return departmentService.updateDepartment(departmentId,department);
 
+    }
+
+    @GetMapping("/get-app-name")
+    public String getAppName(){
+        return appName;
     }
 
 }
