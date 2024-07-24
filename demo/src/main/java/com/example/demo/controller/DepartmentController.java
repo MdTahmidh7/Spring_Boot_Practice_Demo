@@ -8,6 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -23,14 +26,33 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping("/departments")
-    public Department saveDepartment(@Valid @RequestBody Department department) {
+    public ResponseEntity<?> saveDepartment(@Valid @RequestBody Department department) {
         logger.info("Inside Save Department, Department is saved.");
-        return departmentService.saveDepartment(department);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("HeaderName","New Header");
+
+        Department response =  departmentService.saveDepartment(department);
+
+        return new ResponseEntity<>(
+                response,
+                headers,
+                HttpStatus.valueOf("OK"));
     }
     @GetMapping("/departments")
-    public List<Department> getDepartment(){
+    public ResponseEntity<?> getDepartment(){
+
         logger.info("Inside Get Department, All Department is Get.");
-        return departmentService.getDepartment();
+
+        List<Department> response = departmentService.getDepartment();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("HeaderName","New Header");
+
+        return new ResponseEntity<>(
+                response,
+                headers,
+                HttpStatus.valueOf("OK"));
     }
 
     @GetMapping("/departments/{id}")

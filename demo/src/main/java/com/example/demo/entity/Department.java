@@ -16,7 +16,7 @@ public class Department  {
     @NotNull(message = "Department name can not be null")
     private String departmentName;
 
-    @Length(max = 5, min = 2, message = "Size is 2-5")
+    @Length(max = 20, min = 2, message = "Department address must be 2-20 character")
     private String departmentAddress;
 
 
