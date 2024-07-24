@@ -4,6 +4,7 @@ import com.example.demo.entity.Department;
 import com.example.demo.service.DepartmentService;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+
+@Slf4j
 @RestController
 public class DepartmentController {
 
@@ -62,8 +65,11 @@ public class DepartmentController {
 
     @DeleteMapping("/departments/{id}")
     public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+
+        log.info("Deleting Department from department table id = "+departmentId);
         departmentService.deleteDepartmentById(departmentId);
         return "Department Deleted with id = "+departmentId;
+
     }
 
     @PutMapping("/departments/{id}")
